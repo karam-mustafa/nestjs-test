@@ -1,6 +1,7 @@
-import { Controller, Get, Param, Req, Res } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, Res } from '@nestjs/common';
 import { CustomersService } from '../../services/customers/customers.service';
 import { Request, Response } from 'express';
+import { CreateCustomerDto } from '../../dtos/CreateCustomerDto.dto';
 
 @Controller('customers')
 export class CustomersController {
@@ -17,5 +18,11 @@ export class CustomersController {
       res.status(404).send({message : "not found"})
     }
   }
+
+  @Post('create')
+  create(@Body() createCustomerDto: CreateCustomerDto){
+    this.customersService.create(createCustomerDto)
+  }
+
 
 }
