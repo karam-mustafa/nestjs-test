@@ -9,7 +9,7 @@ export class CustomersController {
 
   @Get('')
   getCustomer(){
-    return this.customersService.find()
+    return this.customersService.find(1)
   }
 
 }
