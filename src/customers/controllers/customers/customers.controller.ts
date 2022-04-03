@@ -1,5 +1,6 @@
-import { Controller, Get, Param, Req, Request, Res, Response } from '@nestjs/common';
+import { Controller, Get, Param, Req, Res } from '@nestjs/common';
 import { CustomersService } from '../../services/customers/customers.service';
+import { Request, Response } from 'express';
 
 @Controller('customers')
 export class CustomersController {
@@ -9,7 +10,12 @@ export class CustomersController {
 
   @Get(':id')
   getCustomer(@Param('id') id: number, @Req() req: Request, @Res() res: Response){
-    return this.customersService.find(id)
+    const customer = this.customersService.find(id);
+    if (customer){
+      res.send(customer)
+    }else{
+      res.status(404).send({message : "not found"})
+    }
   }
 
 }
