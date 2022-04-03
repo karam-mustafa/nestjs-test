@@ -28,4 +28,8 @@ export class CustomersService {
   create(customerDto: CreateCustomerDto) {
     this.customers.push(customerDto)
   }
+
+  get() {
+    return this.customers;
+  }
 }

@@ -19,6 +19,17 @@ export class CustomersController {
     }
   }
 
+
+  @Get('')
+  getCustomer(){
+    const customer = this.customersService.get();
+    if (customer){
+      res.send(customer)
+    }else{
+      res.status(404).send({message : "not found"})
+    }
+  }
+
   @Post('create')
   create(@Body() createCustomerDto: CreateCustomerDto){
     this.customersService.create(createCustomerDto)
