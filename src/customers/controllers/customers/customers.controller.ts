@@ -21,7 +21,7 @@ export class CustomersController {
 
 
   @Get('')
-  getCustomer(){
+  get(@Req() req: Request, @Res() res: Response){
     const customer = this.customersService.get();
     if (customer){
       res.send(customer)
